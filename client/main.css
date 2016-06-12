@@ -5,6 +5,10 @@
 .clearfix:before, .clearfix:after { content: ''; display: table; }
 .clearfix:after { clear: both; }
 
+html, body{
+  min-height:100%;
+}
+
 body {
   background: #fff;
   color: rgba(0,0,0,0.45);
@@ -15,6 +19,7 @@ body {
 
 #react-root{
   margin:0 auto;
+  max-width:100%;
   width:360px;
   height:640px;
 }
