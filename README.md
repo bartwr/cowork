@@ -17,6 +17,10 @@ Basically a form:
 
 Awesome, why not add cowork.co as an app, so you will receive updates if we see a relevant connection? -> Add to your homescreen.
 
+## Screenshot of current state
+
+![img](http://bartroorda.nl/upimg/201512-jkd897j3/s-20160612-174350.png)
+
 ## Privacy policy
 
 We don't use your email for anything other then logging you in*, so we can show you your personal dashboard. Read the [full privacy policy here](..).
