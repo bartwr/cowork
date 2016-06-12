@@ -1,1 +1,20 @@
-/* CSS declarations go here */
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic);
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+  background: #fff;
+  color: rgba(0,0,0,0.45);
+  font-size: 100%;
+  line-height: 1.25;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+#react-root{
+  margin:0 auto;
+  width:360px;
+  height:640px;
+}
