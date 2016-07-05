@@ -28,14 +28,15 @@ export default class CoworkLanding extends Component {
     return (
       <form style={styles.base}>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.iAm})}>
-          I am <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.iAm})} dangerouslySetInnerHTML={this.renderClickableArea(['a graphic designer', 'Simone'])} />,
+          I am <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.iAm})} dangerouslySetInnerHTML={this.renderClickableArea(['a graphic designer', 'Simone', '...'])} />,
         </span>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.workingOn})}>
-          I <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.workingOn})} dangerouslySetInnerHTML={this.renderClickableArea(['work on a new, secret mobile application', 'am reading about quantum fysics'])} />
+          I <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.workingOn})} dangerouslySetInnerHTML={this.renderClickableArea(['work on a new, secret mobile application', 'am reading about quantum fysics', '...'])} />
         </span>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.lookingFor})}>
-          &amp; I <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})} dangerouslySetInnerHTML={this.renderClickableArea(['like to get in contact with a web developer', 'am searching for a designer that can create a visual identity for X', 'am looking for a project manager', 'like to meet people who know a lot about block chain'])} />
+          &amp; I <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})} dangerouslySetInnerHTML={this.renderClickableArea(['like to get in contact with a web developer', 'am searching for a designer that can create a visual identity for X', 'am looking for a project manager', 'like to meet people who know a lot about block chain', '...'])} />
         </span>
+        <button style={styles.button}>Next</button>
       </form>
     );
   }
@@ -54,10 +55,11 @@ var styles = {
     textTransform: 'lowercase'
   },
   infoBlock: {
-    display: 'inline-block',
+    display: 'block',
     marginBottom: '25px'
   },
   clickableArea: {
+    cursor: 'pointer',
     display: 'inline',
     color: '#fff',
     borderRadius: '5px',
