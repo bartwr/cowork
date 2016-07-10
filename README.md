@@ -15,7 +15,7 @@ Basically a form:
 - What knowledge can you share?
 - What knowledge would you like to receive?
 
-Awesome, why not add cowork.co as an app, so you will receive updates if we see a relevant connection? -> Add to your homescreen.
+Awesome, why not add cowork.nu as an app, so you will receive updates if we see a relevant connection? -> Add to your homescreen.
 
 ## Screenshot of current state
 

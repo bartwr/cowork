@@ -1,5 +1,5 @@
 {
-  "name": "nameOfYourApp",
+  "name": "coworknu",
   "private": true,
   "scripts": {
     "start": "meteor run"
