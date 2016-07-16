@@ -1,6 +1,7 @@
 {
-  "shortname": "cowork.nu",
   "name": "cowork.nu",
+  "shortname": "cowork.nu",
+  "description": "cowork.nu - If you are in a coworking environment, share what you are currently working on",
   "icons": [
     {
       "src": "favicon/favicon.png",
@@ -27,7 +28,7 @@
       "density": 4.0
     }
   ],
-  "start_url": "/?webapp=true",
+  "start_url": "/?homescreen=1",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FFFFFF"

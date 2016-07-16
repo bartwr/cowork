@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import R from 'ramda';
  
+var colors = {
+  iAm: '#00ff00',
+  workingOn: '#00f',
+  lookingFor: '#f00' /*share with me */
+}
+
 export default class CoworkLanding extends Component {
  
-  // http://tympanus.net/Development/MinimalForm
-  // +
-  // http://mds.is/float-label-pattern/
-  // +
-  // http://leaverou.github.io/stretchy/?mc_cid=d0afee1116&mc_eid=5db727f525
-
   constructor(props) {
     super(props);
+
+    // Events
+    this.onSubmit = function(e){ e.preventDefault(); this.props.onSubmit() }
 
     // getRandom :: Array -> Array node
     this.getRandom = R.curry(function(arr){ return arr[ Math.floor( Math.random() * arr.length ) ] });
@@ -26,7 +29,7 @@ export default class CoworkLanding extends Component {
   render() {
 
     return (
-      <form style={styles.base}>
+      <form style={styles.base} onSubmit={this.onSubmit.bind(this)}>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.iAm})}>
           I am <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.iAm})} dangerouslySetInnerHTML={this.renderClickableArea(['a graphic designer', 'Simone', '...'])} />,
         </span>
@@ -36,16 +39,10 @@ export default class CoworkLanding extends Component {
         <span style={Object.assign({}, styles.infoBlock, {color: colors.lookingFor})}>
           &amp; I <span style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})} dangerouslySetInnerHTML={this.renderClickableArea(['like to get in contact with a web developer', 'am searching for a designer that can create a visual identity for X', 'am looking for a project manager', 'like to meet people who know a lot about block chain', '...'])} />
         </span>
-        <button style={styles.button}>Next</button>
+        <button style={styles.button} type="submit">Next</button>
       </form>
     );
   }
-}
-
-var colors = {
-  iAm: '#00ff00',
-  workingOn: '#00f',
-  lookingFor: '#f00' /*share with me */
 }
 
 var styles = {
@@ -62,7 +59,6 @@ var styles = {
     cursor: 'pointer',
     display: 'inline',
     color: '#fff',
-    borderRadius: '5px',
     padding: '0 5px'
   }
 }
