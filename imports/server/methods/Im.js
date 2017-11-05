@@ -18,7 +18,7 @@ Meteor.methods({
   //   })
 
   'Im.saveMe'(data) {
-    if(! Meteor.userId()) return this.ready();
+    // if(! Meteor.userId()) return false;
 
     return Im.insert({
       userId: 0,

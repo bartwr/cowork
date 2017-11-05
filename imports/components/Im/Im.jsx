@@ -32,7 +32,9 @@ var styles = {
   base: {
     fontSize: '1.75em',
     lineHeight: '1.5em',
-    textTransform: 'lowercase'
+    textTransform: 'lowercase',
+    borderBottom: 'solid #ccc 1px',
+    margin: '25px 0'
   },
   infoBlock: {
     display: 'block',
