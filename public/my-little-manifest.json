@@ -31,5 +31,7 @@
   "start_url": "/?homescreen=1",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#FFFFFF"
+  "background_color": "#FFFFFF",
+  "gcm_sender_id": "482941778795",
+  "DO_NOT_CHANGE_GCM_SENDER_ID": "Do not change the GCM Sender ID"
 }

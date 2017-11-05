@@ -1,13 +1,27 @@
 <head>
 
+  <!-- Manifest. Renamed because of https://github.com/meteor/meteor/issues/6674 -->
+  <link rel="manifest" href="/my-little-manifest.json">
+
+  
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "dcf36edf-b415-4081-b0e9-247b9d9b6d68",
+      autoRegister: false,
+      notifyButton: {
+        enable: true /* Set to false to hide */
+      }
+    }]);
+  </script>
+  
+
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>cowork</title>
-
-  <!-- Manifest. Renamed because of https://github.com/meteor/meteor/issues/6674 -->
-  <link rel="manifest" href="/my-little-manifest.json">
 
   <!-- Name of web application (only should be used if the website is used as an app) -->
   <meta name="application-name" content="cowork">
@@ -38,7 +52,7 @@
   <meta name="coverage" content="Worldwide">
 
   <!-- Scripts -->
-  <script type="text/javascript" src="/initServiceWorker.js"></script>
+  <!-- <script type="text/javascript" src="/initServiceWorker.js"></script> -->
 
 </head>
  
