@@ -23,8 +23,8 @@ export default class CoworkLanding extends Component {
 
     // State
     this.state = {
-      iAmExamples: ['a graphic designer', 'Simone', 'Joost'],
-      workingOnExamples: ['work on a new, secret mobile application', 'am reading about quantum fysics'],
+      iAmExamples: ['a graphic designer', 'Simone', 'Joost', 'Vera'],
+      workingOnExamples: ['work on a secret project', 'read about game of life'],
       lookingForExamples: ['like to get in contact with a web developer', 'am searching for a designer that can create a visual identity for X', 'am looking for a project manager', 'like to meet people who know a lot about block chain']
     };
 
@@ -44,8 +44,8 @@ export default class CoworkLanding extends Component {
       if(countTimes >= 0)
         self.setState({
           iAmExamples: ['...'],
-          workingOnExamples: ['...'],
-          lookingForExamples: ['...']
+          workingOnExamples: ['work on ...'],
+          lookingForExamples: ['\'m looking for ...']
         })
       else {
         self.forceUpdate();
@@ -57,15 +57,29 @@ export default class CoworkLanding extends Component {
   }
 
   setValue = name => {
-    if(name == 'iAm') msg = 'i am ...'
-    else if(name == 'workingOn') msg = ', i ...'
-    else if(name == 'lookingFor') msg = '& i ...'
 
+    // Set prompt title
+    if(name == 'iAm') msg = 'i am ...'
+    else if(name == 'workingOn') msg = 'i work on ...'
+    else if(name == 'lookingFor') msg = '& i\'m looking for ...'
+
+    // Ask the user for the value
     this.state[name] = prompt(msg, '')
     this.forceUpdate();
+
+    // Automatically show next popup after filling in
+    if(name == 'iAm')
+      this.setValue('workingOn')
+
+    else if(name == 'workingOn')
+      this.setValue('lookingFor')
+
   }
 
   render() {
+
+    random = Math.floor(Math.random() * 3)
+    chosenOne = ['iAm', 'workingOn', 'lookingFor'][random]
 
     return (
       <form style={styles.base} onSubmit={this.submitForm.bind(this)} method="post">
@@ -76,17 +90,17 @@ export default class CoworkLanding extends Component {
 
         <span style={Object.assign({}, styles.infoBlock, {color: colors.iAm})}>
           I am <span onClick={this.setValue.bind(this, 'iAm')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.iAm})}>{this.renderClickableArea(
-            this.state.iAm ? [this.state.iAm] : this.state.iAmExamples
+            this.state.iAm ? [this.state.iAm] : (chosenOne == 'iAm' ? this.state.iAmExamples : ['...'])
           )}</span>,
         </span>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.workingOn})}>
-          I work on <span onClick={this.setValue.bind(this, 'workingOn')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.workingOn})}>{this.renderClickableArea(
-            this.state.workingOn ? [this.state.workingOn] : this.state.workingOnExamples
+          I <span onClick={this.setValue.bind(this, 'workingOn')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.workingOn})}>{this.renderClickableArea(
+            this.state.workingOn ? [this.state.workingOn] : (chosenOne == 'workingOn' ? this.state.workingOnExamples : ['work on ...'])
           )}</span>
         </span>
         <span style={Object.assign({}, styles.infoBlock, {color: colors.lookingFor})}>
-          &amp; I'm looking for <span onClick={this.setValue.bind(this, 'lookingFor')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})}>{this.renderClickableArea(
-            this.state.lookingFor ? [this.state.lookingFor] : this.state.lookingForExamples
+          &amp; I <span onClick={this.setValue.bind(this, 'lookingFor')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})}>{this.renderClickableArea(
+            this.state.lookingFor ? [this.state.lookingFor] : (chosenOne == 'lookingFor' ? this.state.lookingForExamples : ['\'m looking for ...'])
           )}</span>
         </span>
 
