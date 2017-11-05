@@ -49,10 +49,10 @@ export default class CoworkLanding extends Component {
         })
       else {
         self.forceUpdate();
-        setTimeout(() => poke(countTimes + 1), 1200);
+        setTimeout(() => poke(countTimes + 1), 1500);
       }
     }
-    setTimeout(() => poke(0), 1200);
+    setTimeout(() => poke(0), 1500);
 
   }
 
@@ -60,17 +60,17 @@ export default class CoworkLanding extends Component {
 
     // Set prompt title
     if(name == 'iAm') msg = 'i am ...'
-    else if(name == 'workingOn') msg = 'i work on ...'
-    else if(name == 'lookingFor') msg = '& i\'m looking for ...'
+    else if(name == 'workingOn') msg = "i am " + (this.state['iAm'] ? this.state['iAm'] : '') + "\ni ..."
+    else if(name == 'lookingFor') msg = "i am " + (this.state['iAm'] ? this.state['iAm'] : '') + "\ni " + (this.state['workingOn'] ? this.state['workingOn'] : '') + "\n& i ..."
 
     // Ask the user for the value
-    this.state[name] = prompt(msg, '')
+    this.state[name] = prompt(msg, this.state[name] ? this.state[name] : '')
     this.forceUpdate();
 
     // Automatically show next popup after filling in
-    if(name == 'iAm')
+    if(name == 'iAm') {
       this.setValue('workingOn')
-
+    }
     else if(name == 'workingOn')
       this.setValue('lookingFor')
 
