@@ -12,8 +12,8 @@ export default class CoworkLanding extends Component {
   // submitForm :: void -> ?
   submitForm = (e) => {
     e.preventDefault();
-    console.log(this.state);
     this.saveForm(this.state);
+    FlowRouter.go('swarm');
   }
 
   saveForm = (data) => Meteor.call('Im.saveMe', data);
