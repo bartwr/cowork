@@ -19,7 +19,12 @@ Awesome, why not add cowork.nu as an app, so you will receive updates if we see 
 
 ## Screenshot of current state
 
-![img](http://bartroorda.nl/upimg/201512-jkd897j3/s-20160612-174350.png)
+![img](https://user-images.githubusercontent.com/899234/32415837-7f9d5a9c-c240-11e7-8a33-6add07493ac9.png)
+
+## Deployment tools
+
+1. Heroku
+2. MLab
 
 ## Privacy policy
 
