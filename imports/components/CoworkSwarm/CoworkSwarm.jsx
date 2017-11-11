@@ -15,8 +15,12 @@ class CoworkSwarm extends Component {
   render() {
     return (
       <div style={styles.base}>
-        Welcome to the Swarm!
+        <p>
+          Welcome to the Swarm!
+        </p>
+
         {R.map(this.renderIm, this.props.allIm)}
+
       </div>
     );
   }

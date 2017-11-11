@@ -30,7 +30,13 @@ export default class CoworkLanding extends Component {
 
     return (
       <div style={styles.base}>
+
+        <p style={styles.paragraph}>
+          <b>What you'd like to share?</b> Fill in below & get to know the swarm you're in. <span style={{display: 'inline-block'}}>[<u>swarm?</u>]</span>
+        </p>
+
         <CoworkForm />
+
       </div>
     );
   }

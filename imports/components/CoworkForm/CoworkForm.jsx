@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import R from 'ramda';
- 
+import ContentEditable from 'react-contenteditable';
+
 var colors = {
   iAm: '#00ff00',
   workingOn: '#00f',
@@ -23,6 +24,11 @@ export default class CoworkLanding extends Component {
 
     // State
     this.state = {
+      // user values
+      iAm: '...',
+      workingOn: 'am working on ...',
+      lookingFor: '\'m looking for ...',
+      // examples
       iAmExamples: ['a graphic designer', 'Simone', 'Joost', 'Vera'],
       workingOnExamples: ['work on a secret project', 'read about game of life'],
       lookingForExamples: ['like to get in contact with a web developer', 'am searching for a designer that can create a visual identity for X', 'am looking for a project manager', 'like to meet people who know a lot about block chain']
@@ -56,52 +62,33 @@ export default class CoworkLanding extends Component {
 
   }
 
-  setValue = name => {
+  // handleChange :: String, Event -> StateChange
+  handleChange = (name, e) => { this.state[name] = e.target.value }
 
-    // Set prompt title
-    if(name == 'iAm') msg = 'i am ...'
-    else if(name == 'workingOn') msg = "i am " + (this.state['iAm'] ? this.state['iAm'] : '') + "\ni ..."
-    else if(name == 'lookingFor') msg = "i am " + (this.state['iAm'] ? this.state['iAm'] : '') + "\ni " + (this.state['workingOn'] ? this.state['workingOn'] : '') + "\n& i ..."
-
-    // Ask the user for the value
-    this.state[name] = prompt(msg, this.state[name] ? this.state[name] : '')
-    this.forceUpdate();
-
-    // Automatically show next popup after filling in
-    if(name == 'iAm') {
-      this.setValue('workingOn')
-    }
-    else if(name == 'workingOn')
-      this.setValue('lookingFor')
-
+  // renderInput :: String, Object { styles, extra }
+  renderInput = (name, extra) => {
+    return <ContentEditable
+            html={this.state[name]}
+            disabled={false}
+            style={Object.assign({}, extra.styles.clickableArea, {backgroundColor: extra.colors[name]})}
+            onChange={this.handleChange.bind(this, name)}
+          />
   }
 
   render() {
-
-    random = Math.floor(Math.random() * 3)
-    chosenOne = ['iAm', 'workingOn', 'lookingFor'][random]
-
     return (
       <form style={styles.base} onSubmit={this.submitForm.bind(this)} method="post">
 
-        <p>
-          Wat wil je delen?
-        </p>
-
         <span style={Object.assign({}, styles.infoBlock, {color: colors.iAm})}>
-          I am <span onClick={this.setValue.bind(this, 'iAm')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.iAm})}>{this.renderClickableArea(
-            this.state.iAm ? [this.state.iAm] : (chosenOne == 'iAm' ? this.state.iAmExamples : ['...'])
-          )}</span>,
+          I am {this.renderInput('iAm', {styles, colors})},
         </span>
+
         <span style={Object.assign({}, styles.infoBlock, {color: colors.workingOn})}>
-          I <span onClick={this.setValue.bind(this, 'workingOn')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.workingOn})}>{this.renderClickableArea(
-            this.state.workingOn ? [this.state.workingOn] : (chosenOne == 'workingOn' ? this.state.workingOnExamples : ['work on ...'])
-          )}</span>
+          I {this.renderInput('workingOn', {styles, colors})}
         </span>
+
         <span style={Object.assign({}, styles.infoBlock, {color: colors.lookingFor})}>
-          &amp; I <span onClick={this.setValue.bind(this, 'lookingFor')} style={Object.assign({}, styles.clickableArea, {backgroundColor: colors.lookingFor})}>{this.renderClickableArea(
-            this.state.lookingFor ? [this.state.lookingFor] : (chosenOne == 'lookingFor' ? this.state.lookingForExamples : ['\'m looking for ...'])
-          )}</span>
+          & I {this.renderInput('lookingFor', {styles, colors})}
         </span>
 
         <button style={styles.button} type="submit">Next</button>
@@ -117,6 +104,10 @@ var styles = {
     lineHeight: '1.5em',
     textTransform: 'lowercase'
   },
+  paragraph: {
+    fontSize: '16px',
+    lineHeight: '20px'
+  },
   infoBlock: {
     display: 'block',
     marginBottom: '25px'
@@ -125,6 +116,7 @@ var styles = {
     cursor: 'pointer',
     display: 'inline',
     color: '#fff',
-    padding: '0 5px'
+    padding: '0 5px',
+    outline: 'none',
   }
 }
