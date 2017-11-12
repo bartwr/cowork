@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 // Import templates
 import CurrentLocation from '/imports/containers/CurrentLocation/CurrentLocation.jsx';
-import CoworkForm from '/imports/containers/CoworkForm/CoworkForm.jsx';
+import CoworkForm from '/imports/components/CoworkForm/CoworkForm.jsx';
 
 export default class CoworkLanding extends Component {
  
@@ -35,7 +35,7 @@ export default class CoworkLanding extends Component {
           <b>What you'd like to share?</b> Fill in below & get to know the swarm you're in. <span style={{display: 'inline-block'}}>[<u>swarm?</u>]</span>
         </p>
 
-        <CoworkForm />
+        <CoworkForm isEditable={true} />
 
       </div>
     );

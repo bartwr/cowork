@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data'
 
+import CoworkForm from '../CoworkForm/CoworkForm'
+
 class Im extends Component {
  
   render() {
+    let isEditable = true;
+
     return (
       <div style={styles.base}>
-
-        <span style={Object.assign({}, styles.infoBlock, {color: colors.iAm})}>
-          I am <span style={Object.assign({}, styles.userValue, {backgroundColor: colors.iAm})}>{this.props.im.iAm}</span>,
-        </span>
-        <span style={Object.assign({}, styles.infoBlock, {color: colors.workingOn})}>
-          I <span style={Object.assign({}, styles.userValue, {backgroundColor: colors.workingOn})}>{this.props.im.workingOn}</span>
-        </span>
-        <span style={Object.assign({}, styles.infoBlock, {color: colors.lookingFor})}>
-          &amp; I <span style={Object.assign({}, styles.userValue, {backgroundColor: colors.lookingFor})}>{this.props.im.lookingFor}</span>
-        </span>
-
+        <CoworkForm isEditable={isEditable} im={this.props.im} />
       </div>
     );
   }
@@ -30,10 +24,8 @@ var colors = {
 
 var styles = {
   base: {
-    fontSize: '1.75em',
-    lineHeight: '1.5em',
-    textTransform: 'lowercase',
     borderBottom: 'solid #ccc 1px',
+    paddingBottom: '25px',
     margin: '25px 0'
   },
   infoBlock: {
@@ -50,6 +42,7 @@ var styles = {
 
 export default createContainer((props) => {
   return {
-    im: props.im
+    im: props.im,
+    userId: Meteor.userId()
   }
 }, Im);

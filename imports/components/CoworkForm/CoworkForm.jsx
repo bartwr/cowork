@@ -13,6 +13,7 @@ export default class CoworkLanding extends Component {
   // submitForm :: void -> ?
   submitForm = (e) => {
     e.preventDefault();
+    console.log(this.state)
     this.saveForm(this.state);
     FlowRouter.go('swarm');
   }
@@ -22,12 +23,15 @@ export default class CoworkLanding extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props)
+
     // State
     this.state = {
+      _id: props.im ? props.im._id : null,
       // user values
-      iAm: '...',
-      workingOn: 'am working on ...',
-      lookingFor: '\'m looking for ...',
+      iAm: props.im ? props.im.iAm : '...',
+      workingOn: props.im ? props.im.workingOn : 'am working on ...',
+      lookingFor: props.im ? props.im.lookingFor : '\'m looking for ...',
       // examples
       iAmExamples: ['a graphic designer', 'Simone', 'Joost', 'Vera'],
       workingOnExamples: ['work on a secret project', 'read about game of life'],
@@ -69,13 +73,21 @@ export default class CoworkLanding extends Component {
   renderInput = (name, extra) => {
     return <ContentEditable
             html={this.state[name]}
-            disabled={false}
+            disabled={! this.props.isEditable}
             style={Object.assign({}, extra.styles.clickableArea, {backgroundColor: extra.colors[name]})}
             onChange={this.handleChange.bind(this, name)}
           />
   }
 
   render() {
+
+    let button = 
+      this.props.isEditable ?
+        this.props.im && this.props.im._id ?
+          <button style={styles.button} type="submit">Save</button> :
+          <button style={styles.button} type="submit">Next</button>
+        : ''
+
     return (
       <form style={styles.base} onSubmit={this.submitForm.bind(this)} method="post">
 
@@ -91,12 +103,15 @@ export default class CoworkLanding extends Component {
           & I {this.renderInput('lookingFor', {styles, colors})}
         </span>
 
-        <button style={styles.button} type="submit">Next</button>
+        {button}
 
       </form>
     );
   }
 }
+
+// PropTypes:
+// isEditable: Bool / optional, default false
 
 var styles = {
   base: {

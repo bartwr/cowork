@@ -20,14 +20,19 @@ Meteor.methods({
   'Im.saveMe'(data) {
     // if(! Meteor.userId()) return false;
 
-    return Im.insert({
+    return Im.update({
+      _id: data ? data._id : null
+    }, {
       userId: 0,
       locationId: 0,
       dateCreated: new Date(),
       iAm: data.iAm,
       workingOn: data.workingOn,
       lookingFor: data.lookingFor,
+    }, {
+      upsert: true
     })
+
   }
 
 })
